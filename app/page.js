@@ -9,7 +9,7 @@ export default async function Home() {
   }
   return (
     <div className="bg-black h-screen overflow-hidden">
-        {session ? (
+      {session ? (
           <p>Your signed in as {session?.user.name}</p>
         ) : (
           <h1>You need to sign in!!</h1>
