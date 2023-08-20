@@ -1,3 +1,6 @@
+'use client'
+import { signOut} from "next-auth/react";
+import { useEffect, useState } from "react";
 import {
   HiOutlineBuildingLibrary,
   HiOutlineHomeModern,
@@ -5,11 +8,26 @@ import {
   HiOutlineHeart,
   HiOutlinePlusCircle,
   HiOutlineRss,
+  HiLockClosed
 } from "react-icons/hi2";
+import useSpotify from "../hooks/useSpotify";
+import { useSession } from "next-auth/react";
 const Sidebar = () => {
+const {data: session, status} = useSession()
+console.log(session)
+// const [playlists, setPlaylists] = useState([])
+// const spotifyApi = useSpotify();
+// useEffect(()=>{
+//   if (spotifyApi.getAccessToken()){
+//     spotifyApi.getUserPlaylist().then((data)=>{
+//       setPlaylists(data.items)
+//     })
+//   }
+// }, [spotifyApi])
   return (
-    <div className="text-gray-500 p-5 text-sm border-r border-gray-900">
+    <div className="text-gray-500 p-5 text-sm border-r border-gray-900 overflow-y-scroll h-screen scrollbar-hide">
       <div className="space-y-4">
+        <button className="flex items-center space-x-2 hover:text-slate-50" onClick={()=>signOut()}><HiLockClosed className="w-5 h-5" /> <p>Log Out</p></button>
         <button className="flex items-center space-x-2 hover:text-slate-50">
           <HiOutlineHomeModern className="w-5 h-5" /> <p>Home</p>
         </button>
@@ -53,7 +71,7 @@ const Sidebar = () => {
         </p>
         <p className="cursor-pointer hover:text-slate-50">
           Playlist name...
-        </p> 
+        </p>
       </div>
     </div>
   );

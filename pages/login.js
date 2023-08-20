@@ -1,8 +1,8 @@
 
 import {getProviders, signIn} from "next-auth/react"
-import LogoGreen from "../../public/Spotify_LogoGreen.png"
+import LogoGreen from "../public/Spotify_LogoGreen.png"
 import Image from "next/image";
-import '../../app/globals.css'
+import '../app/globals.css'
 const login = ({providers}) => {
   return (
   <div className=" flex flex-col h-screen justify-around p-12 items-center bg-black">
