@@ -3,8 +3,8 @@ import { authOptions } from "./api/auth/[...nextauth]/options.js";
 import { getServerSession } from "next-auth/next";
 import Sidebar from "./components/Sidebar.js";
 import Center from "./components/Center.js";
-import {getSession} from "next-auth/react"
 import Head from "next/head.js";
+// import Player from "./components/Player.js";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
@@ -22,6 +22,9 @@ export default async function Home() {
         <Sidebar />
         <Center />
       </main>
+      <div className="sticky bottom-0">
+        {/* <Player /> */}
+      </div>
     </div>
   );
 }
