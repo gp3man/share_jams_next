@@ -20,22 +20,26 @@ const colors = [
 ];
 const Center = () => {
   const { data: session, status } = useSession();
-  const [color, setColor] = useState(null);
+  const [color, setColor] = useState("from-violet-500");
   const playlistId = useRecoilValue(playlistIdState);
   const [playlist, setPlaylist] = useRecoilState(playlistState);
   const spotifyApi = useSpotify();
+
   useEffect(() => {
     setColor(shuffle(colors).pop());
   }, [playlistId]);
+
   useEffect(() => {
-    spotifyApi
-      .getPlaylist(playlistId)
-      .then((data) => {
-        setPlaylist(data.body);
-      })
-      .catch((err) => console.error("Something Went Wrong!", err));
+    if (spotifyApi.getAccessToken() && playlistId){
+      spotifyApi
+        .getPlaylist(playlistId)
+        .then((data) => {
+          setPlaylist(data.body);
+        })
+        .catch((err) => console.error("Something Went Wrong!", err));
+    }
   }, [spotifyApi, playlistId]);
-  console.log(playlist);
+
   return (
     <div className="flex-grow h-screen overflow-y-scroll scrollbar-hide">
       <header className="absolute top-5 right-8">

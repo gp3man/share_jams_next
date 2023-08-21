@@ -1,5 +1,6 @@
+'use client'
 import { useRecoilValue } from "recoil";
-import { playlistState } from "../atoms/playlistAtom";
+import { playlistState } from "../atoms/playlistAtom.js";
 import Song from "./Song.js";
 
 const Songs = () => {

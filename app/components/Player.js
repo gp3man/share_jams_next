@@ -39,6 +39,7 @@ const Player = () => {
   };
   const handlePlayPause = () => {
     spotifyApi.getMyCurrentPlaybackState().then((data) => {
+      console.log(data)
       if (data.body.is_playing) {
         spotifyApi.pause();
         setIsPlaying(false);

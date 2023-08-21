@@ -3,11 +3,16 @@ import { authOptions } from "./api/auth/[...nextauth]/options.js";
 import { getServerSession } from "next-auth/next";
 import Sidebar from "./components/Sidebar.js";
 import Center from "./components/Center.js";
-import Head from "next/head.js";
+// import Head from "next/head.js";
 import Player from "./components/Player.js";
+import { getServerSideProps } from "@/pages/login.js";
+import useSpotify from "./hooks/useSpotify.js";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
+  const spotifyApi = useSpotify()
+  spotifyApi.getAccessToken();
+  const props = await getServerSideProps()
   if (!session) {
     redirect("/api/auth/signin");
   }
