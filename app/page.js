@@ -4,17 +4,15 @@ import { getServerSession } from "next-auth/next";
 import Sidebar from "./components/Sidebar.js";
 import Center from "./components/Center.js";
 import Head from "next/head.js";
-// import Player from "./components/Player.js";
+import Player from "./components/Player.js";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
   if (!session) {
     redirect("/api/auth/signin");
   }
-  console.log(session)
-
   return (
-    <div className="bg-black h-screen overflow-hidden">
+    <div className="bg-black h-screen overflow-hidden text-slate-50">
       {/* <Head>
         <title>ShareJams V2</title>
       </Head> */}
@@ -23,7 +21,7 @@ export default async function Home() {
         <Center />
       </main>
       <div className="sticky bottom-0">
-        {/* <Player /> */}
+        <Player />
       </div>
     </div>
   );
